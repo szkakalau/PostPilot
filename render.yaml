@@ -3,9 +3,9 @@ services:
     name: postpilot-api
     runtime: node
     plan: starter
-    rootDir: apps/api
-    buildCommand: npm install && npm run build
-    startCommand: npm run start
+    rootDir: .
+    buildCommand: corepack enable && corepack prepare pnpm@10.33.0 --activate && pnpm install && pnpm migrate && pnpm --filter @postpilot/api build
+    startCommand: corepack enable && corepack prepare pnpm@10.33.0 --activate && pnpm --filter @postpilot/api start
     envVars:
       - key: NODE_VERSION
         value: 20.18.0
