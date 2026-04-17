@@ -20,16 +20,16 @@ export default function DashboardPage() {
 
   return (
     <div className="card">
-      <h1 className="h1">控制台</h1>
-      <p className="muted">从左侧导航创建内容、查看日历或绑定社交账号。</p>
+      <h1 className="h1">Dashboard</h1>
+      <p className="muted">Use the navigation to create posts, view the calendar, or connect accounts.</p>
       {checkout ? (
         <p className="muted" style={{ marginTop: 10 }}>
-          结账状态：{checkout}
+          Checkout status: {checkout}
         </p>
       ) : null}
       <p style={{ marginTop: 14 }}>
         <button className="btn secondary" type="button" onClick={startCheckout}>
-          Stripe Checkout（预留）
+          Stripe Checkout (placeholder)
         </button>
       </p>
     </div>

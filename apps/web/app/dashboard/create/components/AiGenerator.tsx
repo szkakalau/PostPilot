@@ -19,7 +19,7 @@ export function AiGenerator({ onPick }: { onPick: (text: string) => void }) {
       })) as { posts?: string[] };
       setPosts(data.posts ?? []);
     } catch (e) {
-      setErr(e instanceof Error ? e.message : "生成失败");
+      setErr(e instanceof Error ? e.message : "Generation failed");
     } finally {
       setLoading(false);
     }
@@ -28,15 +28,15 @@ export function AiGenerator({ onPick }: { onPick: (text: string) => void }) {
   return (
     <div className="card" style={{ padding: 16 }}>
       <h2 className="h2" style={{ marginTop: 0 }}>
-        DeepSeek 生成
+        DeepSeek
       </h2>
       <label className="label" htmlFor="prompt">
-        提示词
+        Prompt
       </label>
       <textarea id="prompt" className="textarea" value={prompt} onChange={(e) => setPrompt(e.target.value)} />
       <div style={{ marginTop: 10 }}>
         <button className="btn secondary" type="button" onClick={generate} disabled={loading}>
-          {loading ? "生成中…" : "生成"}
+          {loading ? "Generating…" : "Generate"}
         </button>
       </div>
       {err ? <p className="error">{err}</p> : null}
@@ -45,11 +45,11 @@ export function AiGenerator({ onPick }: { onPick: (text: string) => void }) {
           {posts.map((p) => (
             <li key={p.slice(0, 24)} style={{ marginBottom: 8 }}>
               <span className="muted" style={{ display: "block", fontSize: 12 }}>
-                备选
+                Suggestion
               </span>
               {p}{" "}
               <button className="btn secondary" type="button" onClick={() => onPick(p)}>
-                使用
+                Use
               </button>
             </li>
           ))}

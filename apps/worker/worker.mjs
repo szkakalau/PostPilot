@@ -56,6 +56,48 @@ async function publishLinkedIn(content, accessToken, personId) {
   return id;
 }
 
+function parseRedditContent(raw) {
+  const lines = String(raw ?? "").split(/\r?\n/);
+  const first = (lines[0] ?? "").trim();
+  const m = first.match(/^r\/([A-Za-z0-9_]+)\s*\|\s*(.+)$/);
+  if (!m) {
+    throw new Error(
+      "Reddit content must start with: r/<subreddit> | <title> (first line)"
+    );
+  }
+  const subreddit = m[1];
+  const title = m[2].trim();
+  const body = lines.slice(1).join("\n").trim();
+  return { subreddit, title, body };
+}
+
+async function publishReddit(content, accessToken) {
+  const { subreddit, title, body } = parseRedditContent(content);
+  const form = new URLSearchParams({
+    kind: "self",
+    sr: subreddit,
+    title,
+    text: body,
+    sendreplies: "true",
+  });
+
+  const res = await fetch("https://oauth.reddit.com/api/submit", {
+    method: "POST",
+    headers: {
+      Authorization: `bearer ${accessToken}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+      "User-Agent": process.env.REDDIT_USER_AGENT || "postpilot/0.1 (by u/postpilot)",
+    },
+    body: form,
+  });
+  const text = await res.text();
+  if (!res.ok) {
+    throw new Error(`Reddit ${res.status}: ${text}`);
+  }
+  // Response isn't stable JSON; we store null as platform_post_id for now.
+  return null;
+}
+
 async function runOnce(pool) {
   const pending = await pool.query(`
     SELECT pp.id AS pp_id,
@@ -85,6 +127,8 @@ async function runOnce(pool) {
           row.access_token,
           row.social_account_external_id
         );
+      } else if (row.platform === "reddit") {
+        platformPostId = await publishReddit(row.content, row.access_token);
       } else {
         throw new Error(`Unknown platform: ${row.platform}`);
       }

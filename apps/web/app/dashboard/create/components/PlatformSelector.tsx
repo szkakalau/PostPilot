@@ -21,7 +21,7 @@ export function PlatformSelector({
   }
 
   if (!accounts.length) {
-    return <p className="muted">暂无绑定账号，请先到「账号」页面连接 Twitter / LinkedIn。</p>;
+    return <p className="muted">No accounts connected. Go to Accounts to connect Twitter / LinkedIn / Reddit.</p>;
   }
 
   return (

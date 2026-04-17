@@ -16,9 +16,9 @@ export default function LoginPage() {
     setLoading(true);
     try {
       await apiFetch("/api/auth/request-link", { method: "POST", body: JSON.stringify({ email }) });
-      setMsg("登录链接已发送，请查收邮件。");
+      setMsg("Magic link sent. Check your inbox.");
     } catch (e2) {
-      setErr(e2 instanceof Error ? e2.message : "发送失败");
+      setErr(e2 instanceof Error ? e2.message : "Send failed");
     } finally {
       setLoading(false);
     }
@@ -26,12 +26,12 @@ export default function LoginPage() {
 
   return (
     <div className="card" style={{ maxWidth: 520 }}>
-      <h1 className="h1">登录</h1>
-      <p className="muted">输入邮箱，我们会发送一次性登录链接。</p>
+      <h1 className="h1">Log in</h1>
+      <p className="muted">Enter your email and we will send a one-time magic link.</p>
       <form onSubmit={submit} style={{ display: "grid", gap: 12, marginTop: 14 }}>
         <div>
           <label className="label" htmlFor="em">
-            邮箱
+            Email
           </label>
           <input
             id="em"
@@ -43,7 +43,7 @@ export default function LoginPage() {
           />
         </div>
         <button className="btn" type="submit" disabled={loading}>
-          {loading ? "发送中…" : "发送登录链接"}
+          {loading ? "Sending…" : "Send magic link"}
         </button>
         {msg ? <p className="muted" style={{ margin: 0 }}>{msg}</p> : null}
         {err ? <p className="error" style={{ margin: 0 }}>{err}</p> : null}

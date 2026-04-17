@@ -10,14 +10,14 @@ export function PostEditor({
   return (
     <div>
       <label className="label" htmlFor="content">
-        正文
+        Content
       </label>
       <textarea
         id="content"
         className="textarea"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="写点什么…"
+        placeholder="Write something…"
       />
     </div>
   );

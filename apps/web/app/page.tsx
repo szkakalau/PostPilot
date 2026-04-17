@@ -4,16 +4,16 @@ export default function Home() {
   return (
     <div className="card">
       <h1 className="h1">PostPilot</h1>
-      <p className="muted">跨平台社媒排期与发布。</p>
+      <p className="muted">Schedule and publish across platforms.</p>
       <p style={{ marginTop: 14 }}>
         <Link className="btn" href="/landing">
-          进入落地页
+          Landing
         </Link>{" "}
         <Link className="btn secondary" href="/login">
-          登录
+          Log in
         </Link>{" "}
         <Link className="btn secondary" href="/dashboard">
-          控制台
+          Dashboard
         </Link>
       </p>
     </div>

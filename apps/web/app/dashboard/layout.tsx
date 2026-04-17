@@ -17,10 +17,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="nav">
         <strong style={{ letterSpacing: "-0.02em" }}>PostPilot</strong>
         <span style={{ opacity: 0.35 }}>|</span>
-        <Link href="/dashboard">总览</Link>
-        <Link href="/dashboard/create">创建帖子</Link>
-        <Link href="/dashboard/calendar">日历</Link>
-        <Link href="/dashboard/accounts">账号</Link>
+        <Link href="/dashboard">Overview</Link>
+        <Link href="/dashboard/create">Create</Link>
+        <Link href="/dashboard/calendar">Calendar</Link>
+        <Link href="/dashboard/accounts">Accounts</Link>
         <span style={{ flex: 1 }} />
         <button
           className="btn secondary"
@@ -30,7 +30,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             router.replace("/login");
           }}
         >
-          退出
+          Log out
         </button>
       </div>
       {children}

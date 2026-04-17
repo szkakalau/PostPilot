@@ -46,9 +46,9 @@ export default function CreatePage() {
         method: "POST",
         body: JSON.stringify(payload),
       })) as { id?: string };
-      setMsg(`已创建帖子：${res.id ?? ""}`);
+      setMsg(`Post created: ${res.id ?? ""}`);
     } catch (e2) {
-      setErr(e2 instanceof Error ? e2.message : "创建失败");
+      setErr(e2 instanceof Error ? e2.message : "Create failed");
     } finally {
       setLoading(false);
     }
@@ -58,16 +58,16 @@ export default function CreatePage() {
     <div className="grid2">
       <form className="card" onSubmit={submit} style={{ display: "grid", gap: 14 }}>
         <h1 className="h1" style={{ marginBottom: 0 }}>
-          创建帖子
+          Create post
         </h1>
         <PostEditor value={content} onChange={setContent} />
         <SchedulerPanel scheduledAt={scheduledAt} onChange={setScheduledAt} />
         <div>
-          <div className="label">发布账号</div>
+          <div className="label">Publish to</div>
           <PlatformSelector accounts={accounts} selected={selected} onChange={setSelected} />
         </div>
         <button className="btn" type="submit" disabled={loading}>
-          {loading ? "提交中…" : "保存"}
+          {loading ? "Saving…" : "Save"}
         </button>
         {msg ? <p className="muted" style={{ margin: 0 }}>{msg}</p> : null}
         {err ? <p className="error" style={{ margin: 0 }}>{err}</p> : null}

@@ -31,7 +31,7 @@ export async function verifyUserJwt(token: string): Promise<JwtPayload> {
 export async function signOAuthState(payload: {
   userId: string;
   codeVerifier: string;
-  provider: "twitter" | "linkedin";
+  provider: "twitter" | "linkedin" | "reddit";
 }): Promise<string> {
   return new SignJWT({
     cv: payload.codeVerifier,
@@ -47,12 +47,17 @@ export async function signOAuthState(payload: {
 export async function verifyOAuthState(token: string): Promise<{
   userId: string;
   codeVerifier: string;
-  provider: "twitter" | "linkedin";
+  provider: "twitter" | "linkedin" | "reddit";
 }> {
   const { payload } = await jwtVerify(token, secretKey(), { algorithms: ["HS256"] });
   const userId = typeof payload.sub === "string" ? payload.sub : "";
   const codeVerifier = typeof payload.cv === "string" ? payload.cv : "";
-  const provider = payload.provider === "linkedin" ? "linkedin" : "twitter";
+  const provider =
+    payload.provider === "linkedin"
+      ? "linkedin"
+      : payload.provider === "reddit"
+        ? "reddit"
+        : "twitter";
   if (!userId || !codeVerifier) throw new Error("Invalid OAuth state");
   return { userId, codeVerifier, provider };
 }
