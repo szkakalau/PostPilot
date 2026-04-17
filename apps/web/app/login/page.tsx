@@ -1,13 +1,19 @@
 "use client";
 
-import { useState } from "react";
-import { apiFetch } from "@/lib/api";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { apiFetch, getToken } from "@/lib/api";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [msg, setMsg] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (getToken()) router.replace("/app");
+  }, [router]);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -42,7 +48,7 @@ export default function LoginPage() {
             required
           />
         </div>
-        <button className="btn" type="submit" disabled={loading}>
+        <button className="btn block" type="submit" disabled={loading}>
           {loading ? "Sending…" : "Send magic link"}
         </button>
         {msg ? <p className="muted" style={{ margin: 0 }}>{msg}</p> : null}

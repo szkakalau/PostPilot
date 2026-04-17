@@ -54,6 +54,10 @@ a:hover {
   margin: 0 auto;
 }
 
+.pagePad {
+  padding: clamp(16px, 2.2vw, 22px) 0 clamp(44px, 6vw, 60px);
+}
+
 .landing {
   position: relative;
   isolation: isolate;
@@ -306,6 +310,10 @@ a:hover {
   transition: transform 120ms ease, border-color 120ms ease, background 120ms ease, box-shadow 120ms ease;
 }
 
+.btn.block {
+  width: 100%;
+}
+
 .btn:hover {
   transform: translateY(-1px);
   border-color: rgba(255, 255, 255, 0.18);
@@ -382,8 +390,17 @@ select:focus {
     gap: 10px;
   }
 
-  .btn {
+  .priceRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .priceRow .btn {
     width: 100%;
+  }
+
+  .landingNav a {
+    display: none;
   }
 }
 

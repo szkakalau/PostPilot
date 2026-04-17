@@ -22,9 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${display.variable} ${body.variable}`}>
-        <div className="container" style={{ padding: "22px 0 60px" }}>
-          {children}
-        </div>
+        <div className="container pagePad">{children}</div>
       </body>
     </html>
   );

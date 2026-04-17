@@ -23,7 +23,7 @@ function CallbackInner() {
         })) as { token?: string };
         if (!data.token) throw new Error("No token returned");
         setToken(data.token);
-        router.replace("/dashboard");
+        router.replace("/app");
       } catch (e) {
         setErr(e instanceof Error ? e.message : "Verification failed");
       }
