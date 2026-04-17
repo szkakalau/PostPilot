@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: postpilot-api
+    runtime: node
+    plan: starter
+    rootDir: apps/api
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+
+  - type: worker
+    name: postpilot-worker
+    runtime: node
+    plan: starter
+    rootDir: apps/worker
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
