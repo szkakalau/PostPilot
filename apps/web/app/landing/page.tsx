@@ -33,39 +33,91 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="stack">
-      {/* Module 1 — HERO */}
-      <section className="card section">
-        <div className="kicker">
-          <span className="kickerDot" />
-          Early access • Early adopter pricing • Launching soon
+    <div className="landing stack">
+      <div className="grain" aria-hidden="true" />
+
+      <header className="landingHeader">
+        <div className="landingBrand">
+          <span className="landingLogo" aria-hidden="true" />
+          <span>PostPilot</span>
         </div>
-        <div style={{ marginTop: 10 }}>
-          <div className="pill">PostPilot</div>
-        </div>
-        <h1 className="h1" style={{ marginTop: 12 }}>
-          Stop paying <span style={{ color: "var(--accent2)" }}>$150–$400/month</span> for tools that don’t
-          write.
-        </h1>
-        <p className="muted lead" style={{ marginTop: 6 }}>
-          PostPilot is the <span style={{ color: "var(--text)", fontWeight: 700 }}>$19/month</span> AI social
-          scheduling tool for Twitter + LinkedIn — write with AI, schedule once, publish automatically.{" "}
-          <span style={{ color: "var(--text)", fontWeight: 700 }}>Launching soon.</span>
-        </p>
-        <div className="priceRow" style={{ marginTop: 14 }}>
-          <button className="btn" type="button" onClick={jumpToWaitlist}>
+        <nav className="landingNav" aria-label="Landing">
+          <a href="#stack">The stack problem</a>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <button className="btn secondary" type="button" onClick={jumpToWaitlist}>
             Join the early access waitlist
           </button>
-          <button className="btn ghost" type="button" onClick={jumpToWaitlist}>
-            Get early access
-          </button>
-          <span className="note">Built for freelancers & small agencies</span>
+        </nav>
+      </header>
+
+      {/* Module 1 — HERO */}
+      <section className="section heroGrid" aria-label="Hero">
+        <div className="card landingCard heroLeft">
+          <div className="heroGlow" aria-hidden="true" />
+          <div className="heroCopy">
+            <div className="kicker">
+              <span className="kickerDot" />
+              Early access • Early adopter pricing • Launching soon
+            </div>
+            <h1 className="h1" style={{ marginTop: 14 }}>
+              Stop paying <span style={{ color: "var(--accent2)" }}>$150–$400/month</span> for tools that
+              don’t write.
+            </h1>
+            <p className="muted lead" style={{ marginTop: 6 }}>
+              PostPilot is the <strong>$19/month</strong> AI social scheduling tool for Twitter + LinkedIn
+              — write with AI, schedule once, publish automatically. <strong>Launching soon.</strong>
+            </p>
+            <div className="heroMeta">
+              <span className="chip">
+                <strong>$19/month</strong> early adopter price
+              </span>
+              <span className="chip">
+                Built for <strong>freelancers</strong> & <strong>small agencies</strong>
+              </span>
+              <span className="chip">
+                Twitter + LinkedIn <strong>first</strong>
+              </span>
+            </div>
+            <div className="priceRow" style={{ marginTop: 14 }}>
+              <button className="btn" type="button" onClick={jumpToWaitlist}>
+                Join the early access waitlist
+              </button>
+              <button className="btn ghost" type="button" onClick={jumpToWaitlist}>
+                Get early access
+              </button>
+              <span className="note">Built for freelancers & small agencies</span>
+            </div>
+          </div>
         </div>
+
+        <aside className="asideBox" aria-label="At a glance">
+          <div className="miniCard">
+            <p className="miniTitle">What you replace</p>
+            <div className="miniRow">
+              <span>Buffer</span> <b>Scheduling</b>
+            </div>
+            <div className="miniRow">
+              <span>Hootsuite</span> <b>Accounts</b>
+            </div>
+            <div className="miniRow">
+              <span>Later</span> <b>Planning</b>
+            </div>
+          </div>
+          <div className="miniCard">
+            <p className="miniTitle">Why it matters</p>
+            <ul className="listTight">
+              <li>Stop paying $150–$400/month.</li>
+              <li>Stop context-switching to write + schedule.</li>
+              <li>Ship consistent posts without the overhead.</li>
+            </ul>
+          </div>
+        </aside>
       </section>
 
       {/* Module 2 — SOCIAL PROOF / PRICE PAIN */}
-      <section className="section">
-        <div className="card">
+      <section className="section" id="stack">
+        <div className="card landingCard">
           <h2 className="h2">The $400/month stack problem</h2>
           <p className="muted" style={{ marginTop: 0, maxWidth: 900 }}>
             If you’re a freelancer or small agency, you’ve probably ended up stacking tools to “cover
@@ -113,7 +165,7 @@ export default function LandingPage() {
 
       {/* Module 3 — PROBLEM SECTION */}
       <section className="section">
-        <div className="card">
+        <div className="card landingCard">
           <h2 className="h2" style={{ marginBottom: 12 }}>
             The usual setup is broken
           </h2>
@@ -141,8 +193,8 @@ export default function LandingPage() {
       </section>
 
       {/* Module 4 — SOLUTION / FEATURES */}
-      <section className="section">
-        <div className="card">
+      <section className="section" id="features">
+        <div className="card landingCard">
           <h2 className="h2">One tool to write, schedule and publish.</h2>
           <div className="featureGrid" style={{ marginTop: 12 }}>
             <div className="card">
@@ -195,7 +247,7 @@ export default function LandingPage() {
 
       {/* Module 5 — DIFFERENTIATION */}
       <section className="section">
-        <div className="card">
+        <div className="card landingCard">
           <h2 className="h2">Built differently from traditional tools</h2>
           <div className="cols3" style={{ marginTop: 12 }}>
             <div className="card">
@@ -227,8 +279,8 @@ export default function LandingPage() {
       </section>
 
       {/* Module 6 — PRICING + FINAL CTA */}
-      <section className="section" id="waitlist">
-        <div className="card">
+      <section className="section" id="pricing">
+        <div className="card landingCard" style={{ marginBottom: 14 }}>
           <h2 className="h2">Early adopter pricing</h2>
           <div className="priceRow" style={{ marginTop: 8 }}>
             <p className="bigPrice">
@@ -242,9 +294,9 @@ export default function LandingPage() {
           <p style={{ margin: "10px 0 0" }}>
             <b>Lock in early access pricing forever.</b>
           </p>
+        </div>
 
-          <hr className="hr" />
-
+        <div className="card landingCard" id="waitlist">
           <h2 className="h2" style={{ marginBottom: 6 }}>
             Launching soon
           </h2>
